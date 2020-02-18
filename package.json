@@ -1,0 +1,18 @@
+{
+  "name": "ipl_data_api",
+  "version": "1.0.0",
+  "description": "API for given IPL data for analizing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vivek Korat",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.1",
+    "uniqid": "^5.2.0"
+  }
+}

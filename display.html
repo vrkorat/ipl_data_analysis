@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                if(sessionStorage.getItem('user') == null)
+                window.location.replace("http://localhost:3000/home.html");
+                else{
+                    
+                    console.log(sessionStorage.getItem('user'))
+                    $("#GetHighestRunGetter").click(function(){
+                        var sess = document.getElementById('session').value ;
+                        console.log(sess);
+                        var data = {session : sess};
+                        $.ajax({type:"post",url: "http://localhost:3000/getHighestRunGetter",contentType: "application/json; charset=utf-8",data : JSON.stringify(data), success: function(result){
+                            var z = document.getElementById('p1')
+                            z.innerHTML = JSON.stringify(result);
+                                console.log(result);
+                        }});
+                        
+                    });
+
+                    $("#playerEverPlayedForTeam").click(function(){
+                        var sess = document.getElementById('session').value ;
+                        console.log(sess);
+                        var data = {session : sess};
+                        $.ajax({type:"post",url: "http://localhost:3000/playerEverPlayedForTeam",contentType: "application/json; charset=utf-8",data : JSON.stringify(data), success: function(result){
+                            var z = document.getElementById('p1')
+                            z.innerHTML = JSON.stringify(result);
+                                console.log(result);
+                        }});
+                        
+                    });
+
+                    $("#GetHighestWicketTacker").click(function(){
+                        var sess = document.getElementById('session').value ;
+                        console.log(sess);
+                        var data = {session : sess};
+                        $.ajax({type:"post",url: "http://localhost:3000/getHeighestWicketTaker",contentType: "application/json; charset=utf-8",data : JSON.stringify(data), success: function(result){
+                            var z = document.getElementById('p1')
+                            z.innerHTML = JSON.stringify(result);
+                                console.log(result);
+                        }});
+                        
+                    });
+
+                    $('#playerOfTheMatch').click(function(){
+                        var sess = document.getElementById('session').value ;
+                        console.log(sess);
+                        var data = {session : sess};
+                        $.ajax({type:"post",url: "http://localhost:3000/playerOfTheMatch",contentType: "application/json; charset=utf-8",data : JSON.stringify(data), success: function(result){
+                            var z = document.getElementById('p1')
+                            z.innerHTML = JSON.stringify(result);
+                            
+                                console.log(result);
+                        }});
+                    })
+
+                    $('#venue').click(function(){
+                        var sess = document.getElementById('session').value ;
+                        console.log(sess);
+                        var data = {session : sess};
+                        $.ajax({type:"post",url: "http://localhost:3000/venue",contentType: "application/json; charset=utf-8",data : JSON.stringify(data), success: function(result){
+                            var z = document.getElementById('p1')
+                            z.innerHTML = JSON.stringify(result);
+                            
+                                console.log(result);
+                        }});
+                    })
+
+                    $('#teams').click(function(){
+                        var sess = document.getElementById('session').value ;
+                        console.log(sess);
+                        var data = {session : sess};
+                        $.ajax({type:"post",url: "http://localhost:3000/teams",contentType: "application/json; charset=utf-8",data : JSON.stringify(data), success: function(result){
+                            var z = document.getElementById('p1')
+                            z.innerHTML = JSON.stringify(result);
+                                console.log(result);
+                        }});
+                        
+                    })
+
+                    $('#mostwins').click(function(){
+                        var sess = document.getElementById('session').value ;
+                        console.log(sess);
+                        var data = {session : sess};
+                        $.ajax({type:"post",url: "http://localhost:3000/mostwins",contentType: "application/json; charset=utf-8",data : JSON.stringify(data), success: function(result){
+                            var z = document.getElementById('p1')
+                            z.innerHTML = JSON.stringify(result);
+                                console.log(result);
+                        }});
+                        
+                    })
+
+                    $('#mosttosswins').click(function(){
+                        var sess = document.getElementById('session').value ;
+                        console.log(sess);
+                        var data = {session : sess};
+                        $.ajax({type:"post",url: "http://localhost:3000/mosttosswins",contentType: "application/json; charset=utf-8",data : JSON.stringify(data), success: function(result){
+                            var z = document.getElementById('p1')
+                            z.innerHTML = JSON.stringify(result);
+                                console.log(result);
+                        }});
+                        
+                    })
+                }
+
+                $('#logout').click(function(){
+                    sessionStorage.clear();
+                    window.location.replace("http://localhost:3000/home.html")
+                })
+                   
+            });
+                
+        
+            
+        </script>
+
+    </head>
+    <body>
+        <h1>hii</h1>
+        <select name="session" id="session">
+            <option value="all">All</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+        </select>
+        <button id="GetHighestRunGetter">HighestRunGetter</button>
+        <button id="GetHighestWicketTacker">HighestWicketTaker</button>
+        <button id="playerOfTheMatch">playerOfTheMatch</button>
+        <button id="venue">GetVenues</button>
+        <button id="teams">GetTeams</button>
+        <button id="mostwins">GetTeamsWithMostWins</button>
+        <button id="mosttosswins">mostTossWins</button>
+        <div id="div1">
+            <p id="p1"></p>
+        </div>
+        <button id="logout">Logout</button>
+    </body>
+</html>

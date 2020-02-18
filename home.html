@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                if(sessionStorage.getItem('user') != undefined)
+                window.location.replace("http://localhost:3000/display.html");
+            
+                    $('#login').click(function(){
+                        var uname = $('#uname').val();
+                        var pass = $('#pass').val();
+                        console.log(uname)
+                        var data = { name : uname, password :pass }
+                        $.ajax({type : "POST",url: "http://localhost:3000/login",contentType: "application/json; charset=utf-8",data : JSON.stringify(data), success: function(result){
+                            console.log(result);
+                                if(result != null && result != undefined && result != '')
+                                {
+                                        console.log(result.uname)
+                                        sessionStorage.setItem("user", result.uname);  
+                                        window.location.replace("http://localhost:3000/display.html");
+                                }
+                                else
+                                {
+                                        document.getElementById('p1').innerHTML = 'invalid username or password'
+                                }
+
+                        }});
+                    })
+                    $('#register').click(function(){
+                        var uname = $('#uname').val();
+                        var pass = $('#pass').val();
+                        var data = { name : uname, password :pass }
+                        $.ajax({type : "POST",url: "http://localhost:3000/register",contentType: "application/json; charset=utf-8",data : JSON.stringify(data), success: function(result){
+                            console.log(result)
+                                if(result != null && result != undefined && result != '')
+                                {
+                                    sessionStorage.setItem("user", result.uname);  
+                                        window.location.replace("http://localhost:3000/display.html");
+                                }
+                                else
+                                {
+                                    document.getElementById('p1').innerHTML = 'invalid username or password'
+                                    
+                                       
+                                }
+
+                        }});
+                    })
+                 
+                }); 
+            
+        </script>
+
+    </head>
+    <body>
+        Username : <input id="uname" type="text">
+        Password : <input id="pass" type="password">
+        <button id="login" class="btn btn-primary">Login</button>  <button id="register" class="btn btn-primary">Register</button>
+        <p id="p1"></p>
+    </body>
+</html>
